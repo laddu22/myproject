@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block title %} 
+  <title>edite page</title>
+{% endblock title%}
+{% block content %} 
+<div class="container">
+</br>
+{% if single_obj.manage == request.user %}
+  <form method="post" class="row"> 
+    {% csrf_token %}          
+      <input class="form-group col-lg-5" type="text" name="task" value="{{single_obj.task}}" placeholder="{{single_obj.task}}"/> 
+      <label class="form-group col-lg-2">Is it done</label>
+      <input type="hidden" group="h1" name="done" value="{{single_obj.done}}"/>
+      <input class="form-group col-lg-1" type="checkbox" group="h1" name="done"  value="{{single_obj.done}}" checked="{{single_obj.done}}"/> &nbsp; &nbsp;
+      <button type="submit" class="btn btn-primary form-group col-lg-2">Update Task</button>
+  </form>
+{% else %}
+  <h4> You are  restricted to edit,sorry</h4>
+{% endif %}
+</div>
+{% endblock content %}

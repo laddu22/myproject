@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} 
+ <title>home  page</title>
+{% endblock title%}
+{% block content %} 
+<div class="container mt-4">
+     <div class="row">
+         <div class="col-lg-4">
+          <img class="shadow-sm rounded float-left" src="{% static 'images/inv1.jpeg' %}" height="300" width="370"/>
+         </div>
+         <div class="col-lg-4">
+            <img class="shadow-sm rounded float-left" src="{% static 'images/inv2.jpeg' %}" height="300" width="370"/>
+        </div>
+        <div  class="col-lg-4">
+            <img class=" shadow-sm rounded float-left" src="{% static 'images/inv3.jpeg' %}" height="300" width="370"/>
+        </div>   
+     </div>
+     <div class="row mt-2">
+        <div class="col-md-10 offset-md-1">
+             <center>
+                <h1 class="text-primary"> We help you in smart <span style="color:purple;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Investments</span></h1>
+                <h3 class="mt-3"> we support you in decision makings</h3>
+                <h5> Invest smart with great returns</h5>
+                <a href="{% url 'todolist' %}"><button type="button" class="shadow-lg p-3 mb-5  rounded mt-3 btn btn-primary btn-lg">Let's Get Started</button></a>
+             </center>
+        </div>
+     </div>
+</div>
+{% endblock content %}
