@@ -24,4 +24,5 @@ urlpatterns = [
     path('',todolist_views.index,name="index"),
     path('about/',todolist_views.about,name='about'),
     path('contact/',todolist_views.contact,name='contact'),
+    path('results/',todolist_views.test1,name='test1')
 ]

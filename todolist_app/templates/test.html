@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% block title %} 
+  <title>contact page</title>
+{% endblock title%}
+{% block content %} 
+
+<div class="container">
+    <br>
+    <form action="{% url 'test' %}" method="POST" class="signin-form">
+    {% csrf_token %}
+        <div class="form-group mb-3">
+             <label class="label" for="name">Enter ID:</label>
+             <input name="id" type="text" class="form-control" placeholder="Username required">
+        </div>
+        <div class="form-group">
+             <button type="submit" class="form-control btn btn-primary submit">submit</button>
+        </div>
+   </form>
+   <div class="container">
+    <br>
+
+
+    
+    {% if mydata %}        
+       <table border="1">
+        <tr>
+            <td>id</td>
+            <td> task name</td>
+        </tr>
+           {% for i in mydata %}
+              <tr>
+                  <td>{{i.id}}</td>
+                  <td>{{i.task}}</td>
+              </tr>
+           {% endfor %}
+        </table>
+    {% elif mydata.id not in mydata %} 
+           <p>no reslts</p>
+    {% else %}
+           <p>no results</p>
+   
+    {% endif %}
+   
+</div>
+{% endblock content %}

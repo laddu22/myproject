@@ -5,6 +5,7 @@ from todolist_app.forms import Taskform
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from todolist_app.form2 import resultForm  
 # Create your views here. 
 
 @login_required
@@ -80,3 +81,34 @@ def pending_task(request,task_id):
     task.done=False
     task.save()
     return redirect('todolist') 
+
+def test(request):
+    if request.method=='POST':   
+        if request.POST['id'] is str:
+            context = {
+                        'mydata':'ENTER NUMBER'
+            }
+            return render(request,'test.html',context)
+        else:
+            task=Tasklist.objects.filter(pk=request.POST['id']).values
+            context = {
+                           'mydata':task
+            }
+            return render(request,'test.html',context)
+    else:
+        return render(request,'test.html',{})
+
+@login_required
+def test1(request):  
+    form = resultForm(request.POST or None)
+    if request.method == 'POST':
+        form = resultForm(request.POST or None)
+        task=Tasklist.objects.filter(pk=request.POST['enterid']).values
+        context = {
+              'mydata':task,'form':form
+           }
+        return render(request,'test1.html',context) 
+    else:
+        form = resultForm()  
+        return render(request,'test1.html',{'form':form})  
+    
