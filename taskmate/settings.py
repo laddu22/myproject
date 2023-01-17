@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'taskmate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'MYDATABASE',
     }
 }
 
@@ -114,7 +114,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 
 CRISPY_TEMPLATE_PACK='bootstrap4'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -126,3 +130,5 @@ LOGIN_REDIRECT_URL='todolist'
 LOGIN_URL='login'
 
 django_heroku.settings(locals())
+
+AUTH_USER_MODEL = 'todolist_app.CustomUser'

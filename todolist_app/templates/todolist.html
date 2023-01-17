@@ -1,10 +1,63 @@
 {% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 {% block title %} 
   <title>todolist page</title>
 {% endblock title%}
 
 {% block content %} 
-<div class="container">
+<head>
+  <style>
+    .s{ color:navy ;background-color: blanchedalmond;}
+  </style>
+</head>
+<div class="container ">
+<div class="mt-3">
+
+  {% if mydata %}
+    <table class="table  table-bordered text-left" style="table-layout: auto;
+    width: 100%;">
+      {% for i in mydata %}
+        <tr>
+          <td colspan="4" > <h5 align="center"> My Profile </h5 ></td>
+          
+            <td align="center" rowspan="5" width="25%">  <img src="/media/{{i.UploadPhoto}}" style="width:200px; height:auto;"/></td>
+          
+       
+        </tr>
+        <tr >
+          <td class="s">User-ID</td><td>{{i.id}}</td>
+          <td class="s">Username</td><td>{{i.username}}</td> </tr>
+         
+        <tr>
+          <td class="s">Firstname</td><td>{{i.first_name}}</td>
+          <td class="s">Lastname</td><td>{{i.last_name}}</td>
+        </tr>
+        <tr>
+          <td class="s">Registerd Email</td><td>{{i.email}}</td>
+                {% if  i.is_superuser and i.is_active %}
+                   <td class="s">User Type</td><td> Admin</td>
+               
+                {% elif  i.is_staff and i.is_active %}
+                <td class="s">User Type</td><td>Staff</td>
+                
+                 {% else %}              
+                 <td class="s">User Typ:</td><td>Normal</td>
+                {% endif %}
+            <tr>
+                  <td class="s">Date_of_Joining</td><td> {{i.date_joined}}</td>
+                  <td class="s">Initial Deposit:</td><td> Rs 1000.00</td>
+           </tr> 
+           <tr rowspan="4"></tr>
+           {% endfor %}
+     
+     
+    </table>
+          
+  {% endif %}
+</div>
+  <br>
+  <h3 align="center"> My task List</h3>
   <br>
   {% if messages %}
   {% for message in messages %} 
@@ -16,13 +69,13 @@
   </div>
   {% endfor %}
   {% endif %}
+ 
   <form method="post" class="row"> 
     {% csrf_token %}
-      <label class="form-group col-lg-0">New Task?</label>
-      <input class="form-group col-lg-4" type="text" name="task" placeholder="Enter new task here"/> &nbsp; &nbsp;
-      Is it Done:&nbsp;
-      <input class="form-group col-lg-0" type="checkbox" name="done"/> &nbsp; &nbsp;
-    <button type="submit" class="btn btn-primary form-group col-lg-2">Add Task</button>
+      
+       {{ myform|crispy}} &nbsp;&nbsp;
+   
+    <button type="submit" class="btn btn-primary form-group col-lg-2">Make Invest</button>
   </form>
   <br>
   <br>
@@ -30,28 +83,37 @@
     <thead class="thead-dark">
       <tr class="row">
         <!--<th scope="col">Id</th>-->
-        <th class="col-4"class="col-7" scope="col">Task</th>
-        <th class="col-4" scope="col">Done</th>
+        <th class="col-2"class="col-7" scope="col">Invested On</th>
+        <th class="col-2" scope="col">Amount</th>
+        <th class="col-2" scope="col">date</th>
+        <th class="col-2" scope="col">Status</th>
         <th class="col-2" scope="col">Edit</th>
         <th class="col-2" scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
+
+      
       {% if all_task %}
+      
       {% for i in all_task %}
       {% if i.done %}
           <tr class="table-success row">
             <!--<td><a href="{% url 'edit_task' i.id %}">{{i.id}}</a></td> -->
-                <td class="col-4">{{i.task}}</td>
-                <td class="col-4"><a href="{% url 'pending_task' i.id %}"><button type="submit" class="btn btn-dark form-group col-lg-8">make it as pending</button></a></td>
+                <td class="col-2">{{i.task}}</td>
+                <td class="col-2">{{i.amount}}</td>
+                <td class="col-2">{{Taskform.date}}</td>
+                <td class="col-2"><a href="{% url 'pending_task' i.id %}"><button type="submit" class="btn btn-dark form-group col-lg-8">make it as pending</button></a></td>
                 <td class="col-2"><a href="{% url 'edit_task' i.id %}"><button type="submit" class="btn btn-warning form-group col-lg-6">Edit</button></a></td>
                 <td class="col-2"><a href="{% url 'delete_task' i.id %}"><button type="submit" class="btn btn-danger form-group col-lg-6">Delete</button></a></td>
          </tr>
       {% else %}
           <tr class="row">
            <!-- <td><a href="{% url 'edit_task' i.id %}">{{i.id}}</a></td> -->
-            <td class="col-4">{{i.task}}</td>
-            <td class="col-4"><a href="{% url 'complete_task' i.id %}"><button type="submit" class="btn btn-dark form-group col-lg-8">make it as completed</button></a></td>
+            <td class="col-2">{{i.task}}</td>
+            <td class="col-2">{{i.amount}}</td>
+            <td class="col-2">{{ Taskform.date}}</td>
+            <td class="col-2"><a href="{% url 'complete_task' i.id %}"><button type="submit" class="btn btn-dark form-group col-lg-8">make it as completed</button></a></td>
             <td class="col-2"><a href="{% url 'edit_task' i.id %}"><button type="submit" class="btn btn-warning form-group col-lg-6">Edit</button></a></td>
             <td class="col-2"><a href="{% url 'delete_task' i.id %}"><button type="submit" class="btn btn-danger form-group col-lg-6">Delete</button></a></td>
           </tr>
@@ -60,6 +122,7 @@
       {% endif %}
     </tbody>
   </table>
+
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
       <li class="page-item"><a class="page-link" href="?pg=1"><<</a></li>
@@ -74,6 +137,7 @@
     </ul>
   </nav>
 </div>
+
 {% endblock content %}
 
 

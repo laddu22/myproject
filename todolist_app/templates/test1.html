@@ -36,6 +36,16 @@
            Provide your ID to get results
     {% endif %}
 
+
+    {% if myusersdata %}  
+    <table> 
+      {% for i in myusersdata %}
+       {{i}}
+          
+      {% endfor %}
+    </table>
+    {% endif %}
+
 </div>
 </center>
 {% endblock content %}

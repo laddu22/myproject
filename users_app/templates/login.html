@@ -3,17 +3,24 @@
 {% load static %}
 
 {% block title %} 
- <title>aboutus page</title>
+ <title>login page</title>
 {% endblock title%}
 {% block content %} 
+<body background="https://wallpaperaccess.com/full/1496206.jpg" style=" 
+
+/* Center and scale the image nicely */
+
+background-repeat: no-repeat;
+background-size: 100%;">
 <br/>
-<div class="container ">
+<div class="container" >
   <div class="row border-0">
-    <div class="col-6">
-        <img class="rounded-circle" src="{% static 'images/reg.gif' %}" height=500 width=400/>
+    <div class="col-8">
+        
    </div>
-    <div class="col-6 mt-5 ">
-          <h2 style="color:#6699FF;" align="center" class="ml-2"> LOGIN FORM</h2><br/>
+    <div class="col-4  ">
+    
+          <h2 class="mt-10" style="color:#FFFFFF;" align="center" class="ml-2"> LOGIN FORM</h2><br/>
           {% if messages %}
           {% for message in messages %} 
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,12 +35,14 @@
                     {%csrf_token%}
                         {{ form|crispy }}
 
-                        <button type="submit" class="btn btn-primary mb-5"> Login </button>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="reset" class="btn btn-primary mb-5"> Cancel </button>
+                        <center><button style=" width: 50%;" type="submit" class="mt-4 btn btn-primary mb-5"> Login </button></center>
+                       <!---- <button type="reset" class="mt-4 btn btn-primary mb-5"> Cancel </button>1 -->
                 
                       </form>
+                      <h5 style="color:white;"> New to Site,Please <a href="{% url 'register' %}">Sign Up</a> here </h5>
     </div>
     
   </div>
 </div>
 {% endblock content %}
+</body>

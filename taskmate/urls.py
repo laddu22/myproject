@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from todolist_app import views as todolist_views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +27,9 @@ urlpatterns = [
     path('',todolist_views.index,name="index"),
     path('about/',todolist_views.about,name='about'),
     path('contact/',todolist_views.contact,name='contact'),
-    path('results/',todolist_views.test1,name='test1')
-]
+    path('results/',todolist_views.test1,name='test1'),
+    path('contact/request/',todolist_views.get_request_contact,name='get_request_contact'),
+    
+] 
+if settings.DEBUG:
+     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
