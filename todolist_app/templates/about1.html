@@ -1,0 +1,140 @@
+{% extends 'base_user.html' %}
+{% load static %}
+{% block title %} 
+ <title>aboutus page</title>
+{% endblock title%}
+{% block content %} 
+<style>
+body {
+  
+  width: 100%;
+  margin: 0; 
+  padding: 0; 
+  overflow-x: hidden;
+  
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+ 
+}
+
+.card {
+  box-shadow: 0 10px 8px 3px rgba(144, 160, 172, 0.2);
+  margin: 2px;
+  border-radius:3%;
+  margin-left:-10px;
+  margin-right:-10px;
+}
+
+.about-section {
+  padding: 20px;
+  text-align: center;
+  
+  color: rgb(44, 128, 7);
+  margin-top:0px;
+  
+}
+.container {
+  padding:  16px;
+  border-radius:20%;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+  border-radius:20%;
+}
+
+.title {
+  color: rgb(96, 8, 160);
+  font-family: georgia;
+  text-shadow: #555;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+ 
+      .glow {
+        font-size: 20px;
+        color: #430c8c;
+        text-align: center;
+        -webkit-animation: glow 2s ease-in-out infinite alternate;
+        -moz-animation: glow 2s ease-in-out infinite alternate;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @-webkit-keyframes glow {
+        from {
+          text-shadow: 0 0 10px #eeeeee, 0 0 20px #ef8e8e, 0 0 30px #e4abab, 0 0 40px #f1a9a9, 
+                       0 0 50px #9554b3, 0 0 60px #9554b3, 0 0 70px #9554b3;
+        }
+        to {
+          text-shadow: 0 0 20px #eeeeee, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6,
+                       0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+        }
+      } 
+
+
+</style>
+<body>
+  <div class="about-section mt-6 ">
+    <h3> "We focus on making your money work hard for you,<br> while you focus on living a full life."</h3>
+  <h2 style="text-align:center"></h2>
+  <div class="container rounded-lg box-shadow mt-3">
+  <div class=" row ">
+    <div class="col-6">
+      <div class="card">
+
+        <img src="{% static 'images/svt.png' %}" alt="Jane" style="width:100%;border-radius:5px;">
+         <h5 class="title mt-2 ">SANKARSH CHANDRA</h5>
+          <p class="title">(Founder ,Chairman & CEO)</p>
+          <p class="title">“We envision a world with equal opportunities for everyone<br> to create wealth and live with joy.” .</p>
+      </div>  
+      </div>
+      <div class="col-6">
+          <div class="card">
+            <h6 style="margin-top:10px;margin-left:10px;margin-right:10px;font-size:small;color:navy;line-height: 215%;" align="justify"> &nbsp&nbsp&nbsp Savart is an advisory technology company that helps clients make sound investments in stocks, mutual funds, bonds, etc.  We eliminate the perplexing questions of “when, what, how much, and how to invest in the market” while dealing with financial decisions.    </h6>
+            <hr class="cener" width="100%">
+              <H6 style="margin-left:10px;margin-right:10px;font-size:small ;color:navy;line-height: 215%"  align="justify">&nbsp&nbspWe believe that everyone deserves a financially secure future for themselves and their loved ones. Our wealth-building technology has been designed to do just that. With Savart, you can develop the financial strength needed to make your life’s dreams come true.  
+                We are changing the landscape of investment advisory globally by bringing AI-based research and recommendation to the fore. <br>Our recommendation engine is built around the investor’s persona/needs, and powered by an unrelenting pursuit of market out-performance.          
+                Our investment philosophy is to use technology to identify strong, ethical investments globally, whether it is in stocks, bonds, mutual funds or ETFs, and stay invested with them for the long term. Amid the rush for high-frequency trading and get-rich-quick schemes in the market, we remain patient and steadfast with our investors across asset classes.  </h2>
+            </H6>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  </body>
+{% endblock content %}

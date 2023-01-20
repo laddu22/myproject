@@ -16,8 +16,14 @@ class CustomUser(AbstractUser):
 
 # Create your models here.
 class Tasklist(models.Model):
+    CHOICES = (
+        ('Gold', 'Gold'),
+        ('Stocks', 'Stocks'),
+        ('Bonds', 'Bonds'),
+        ('Mutual Funds', 'Mutual Funds'),  
+    )
     manage = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=None)
-    task = models.CharField(max_length=150)
+    task = models.CharField(max_length=150,choices=CHOICES,default='Mutual Funds')
     done = models.BooleanField(default=False)
     amount=models.IntegerField(default=1000,null=True,blank=True)
     Date = models.DateTimeField(default=datetime.datetime.now())
@@ -37,6 +43,13 @@ class request_from_contact(models.Model):
 
     def __str__(self):
         return (self.name)
+
+class request_call(models.Model):
+    MobileNo = models.IntegerField()
+    ChooseDate = models.DateField()
+
+    def __str__(self):
+        return str(self.MobileNo)
 
 
 

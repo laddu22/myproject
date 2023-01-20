@@ -1,0 +1,61 @@
+{% extends 'base_user.html' %} 
+{% load static %}
+{% block title %} 
+  <title>contact page</title>
+{% endblock title%}
+
+
+{% block content %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+  /* Google Font CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+.container{
+  width: 85%;
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+}
+
+     h2,h6{color:navy;}
+    
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="rounded col-12">
+                <img  src="{% static 'images/career.jpg' %}" height=200  width=1050 />
+             </div>
+        </div>
+   
+        <div class="row">
+            <div class="rounded col-6 mt-5">
+                <h2 align="center">Company Culture</h2>
+                <p align="justify">
+                    We are on a steep growth curve and are looking for high-energy and passionate individuals to help take Savart to the world.                   
+                    Our employees and culture make Savart a wonderful place to work. Our work environment provides the energy of a start-up along with benefits such as flexible timings, learning pathways, career growth opportunities, and equity ownership possibilities. The organization believes in sharing its success with all its stakeholders and strives for inclusive wealth creation.                   
+                    We are a youthful company that believes in listening, collaborating, and team- based decision-making. Our people policies are aimed at helping you unlock your potential both personally and professionally.                   
+                    Diversity of backgrounds and opinions is of utmost importance to us. You can be your authentic self and be a contributing member of the team. Savart is an equal opportunity employer and does not discriminate based on gender, location, sexual preference, caste, or race.</p>
+            </div>     
+            <div align="justify" class="rounded col-6 mt-5">
+                <br><br>
+               <h6> Current Openings </h6>
+               <li><a href="#">React.JS Developer </a></li>
+               <li><a href="#">Python Developer </a></li>
+               <li><a href="#">Django Developer </a></li>
+               <li><a href="#">AI Developer </a></li><br>
+               <p>If you do not see a fit with any of the roles mentioned here but feel that you & Savart can work together and grow mutually, write to us at hr@savart.com. We are always open to ‘creating roles’ for smart & passionate individuals. </p>
+            </div>   
+        </div>
+    
+      
+    </div>
+    
+
+</body>
+{% endblock content %}

@@ -29,19 +29,16 @@
           <div class="navbar-nav ">
             <a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e" class="nav-item nav-link txt" href="{% url 'index' %}">Home </a>
             <a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e;" class="nav-item nav-link txt" href="{% url 'about' %}">About</a>
-           <!--<a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e;" class="nav-item nav-link txt" href="{% url 'todolist' %}">My Profile</a> -->
+            <a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e;" class="nav-item nav-link txt" href="{% url 'todolist' %}">My Profile</a>
             <a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e;" class="nav-item nav-link txt" href="{% url 'APART' %}">APART</a>
             <a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e;" class="nav-item nav-link txt" href="{% url 'contact' %}">Contact</a>
             <a onmouseover="this.style.color = 'purple'" onmouseout="this.style.color = 'navy'" style="color: #24057e;" class="nav-item nav-link txt" href="{% url 'careers' %}">Careers</a>
-          </div>
           
+          </div>
+         
+         
+        </div>    
 
-        </div>   
-        <ul class="nav justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">+91 90520 12341</a>
-          </li>  
-        <ul>
           {% if user.is_authenticated %}
             <div class="form-inline my-2 my-lg-0 ">
               <div class="p-2 text-primary mr-3"> User name :<b>{{user.username}}</b></div>

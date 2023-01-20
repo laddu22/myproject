@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import Form, ModelForm, DateField, widgets
 from todolist_app.models import Tasklist,CustomUser
 from django.db import models
 
@@ -11,5 +12,6 @@ class Taskform(forms.ModelForm):
         model = Tasklist
         fields= ['task','amount','Date'] 
         widgets = {
-            'Date':  forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={'class':'datetimefield'}) 
+            'Date': widgets.DateInput(format = '%dd/%mm/%Y',attrs={'type': 'date'})
         }
+        ordering = ['-Date']

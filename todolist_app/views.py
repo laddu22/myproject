@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
-from todolist_app.models import Tasklist,request_from_contact,CustomUser
+from todolist_app.models import Tasklist,request_from_contact,CustomUser,request_call
 from todolist_app.forms import Taskform
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -24,13 +24,14 @@ def todolist(request):
         users = CustomUser.objects.filter(username__exact=request.user).values
         form=Taskform(request.POST or None)
         all_task=Tasklist.objects.filter(manage=request.user)
+        s=0
+        for i in all_task:
+            s=s+i.amount
         paginator = Paginator(all_task,5)
         page = request.GET.get('pg')
-        all_task = paginator.get_page(page)       
-        return render(request,'todolist.html',{'myform':form,'all_task':all_task,'mydata':users})
-
-
-
+        all_task = paginator.get_page(page)   
+        return render(request,'todolist.html',{'myform':form,'all_task':all_task,'mydata':users,'total':s})
+        
 @login_required
 def delete_task(request,task_id):
     task=Tasklist.objects.get(pk=task_id)
@@ -54,22 +55,23 @@ def edit_task(request,task_id):
         return render(request,'edit.html',{'single_obj':single_obj})
 
 def index(request):
-    context = {
-        'index_text':"welcome to Index Page"
-    }
-    return render(request,'home.html',context)
+    if request.user.is_authenticated:
+        return render(request,"home1.html")
+    else:
+        return render(request,"home.html")
 
 
 def about(request):
-    context= {
-        'about_text':"welcome aboutus page"
-    }
-    return render(request,'about.html',context)
+    if request.user.is_authenticated:
+        return render(request,"about1.html")
+    else:
+        return render(request,"about.html")
+    
 def contact(request):
-    context= {
-        'contact_text':"welcome to contactus page"
-    }
-    return render(request,'contact.html',context)
+    if request.user.is_authenticated:
+        return render(request,"contact1.html")
+    else:
+        return render(request,"contact.html")
 
 @login_required
 def complete_task(request,task_id):
@@ -88,21 +90,6 @@ def pending_task(request,task_id):
     task.save()
     return redirect('todolist') 
 
-def test(request):
-    if request.method=='POST':   
-        if request.POST['id'] is str:
-            context = {
-                        'mydata':'ENTER NUMBER'
-            }
-            return render(request,'test.html',context)
-        else:
-            task=Tasklist.objects.filter(pk=request.POST['id']).values
-            context = {
-                           'mydata':task
-            }
-            return render(request,'test.html',context)
-    else:
-        return render(request,'test.html',{})
 
 @login_required 
 def test1(request):  
@@ -110,11 +97,9 @@ def test1(request):
     if request.method == 'POST':
         if request.POST['enterid']:
              task=Tasklist.objects.filter(pk=request.POST['enterid']).values
-             print(request.user)
              context = {
               'mydata':task,'form':form,
-             }
-             
+             }          
         return render(request,'test1.html',context) 
     else:
         form = resultForm()  
@@ -130,7 +115,35 @@ def get_request_contact(request):
                 info.save()
                 messages.success(request,('Your request is sent'))
                 return render(request,'contact.html') 
+            else:
+                return render(request,'contact.html',context={})
 
         else:
             return render(request,'contact.html')
 
+
+def APART(request):
+    if request.user.is_authenticated:
+        return render(request,"APART1.html")
+    else:
+        return render(request,"APART.html")
+def careers(request):
+    if request.user.is_authenticated:
+        return render(request,"careers1.html")
+    else:
+        return render(request,"careers.html")
+
+def request_call_details(request):
+        if request.method=="POST":
+            info=request_call()
+            info.MobileNo = request.POST['MobileNo']
+            info.ChooseDate = request.POST['ChooseDate']
+            info.save()
+            if request.user.is_authenticated:
+                return render(request,'home1.html',context={'data':'Details submitted'})                
+            else:
+                return render(request,'home.html',context={'data':'Details submitted'})                
+        else:
+            return render(request,'home.html')
+        
+    

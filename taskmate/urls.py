@@ -26,10 +26,12 @@ urlpatterns = [
     path('account/',include('users_app.urls')),
     path('',todolist_views.index,name="index"),
     path('about/',todolist_views.about,name='about'),
+    path('APART/',todolist_views.APART,name='APART'),
     path('contact/',todolist_views.contact,name='contact'),
     path('results/',todolist_views.test1,name='test1'),
     path('contact/request/',todolist_views.get_request_contact,name='get_request_contact'),
-    
+    path('request_call/',todolist_views.request_call_details,name='request_call_details'),
+    path('careers/',todolist_views.careers,name='careers')
 ] 
 if settings.DEBUG:
      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
